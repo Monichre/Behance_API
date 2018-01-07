@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import {Constants} from '../constants.js'
+import { Constants } from '../constants.js'
 
 export default class Home extends Component {
     constructor(props) {
@@ -12,7 +12,11 @@ export default class Home extends Component {
         }
     }
     componentWillMount() {
-     
+        Axios.get('/gallery').then((response) => {
+            console.log(response)
+        }).catch((error) => {
+            console.log(error)
+        })
     }
     runSearch(e) {
         e.preventDefault()
@@ -49,7 +53,7 @@ export default class Home extends Component {
                 <aside>
                     <h1>Dealer Inspire + Behance</h1>
                     <ul>
-                       
+
                     </ul>
                 </aside>
 
