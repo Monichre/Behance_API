@@ -76,9 +76,13 @@ app.post('/search', (req, res) => {
 
   const search_params = req.body.data
   searchUser(search_params).then((response) => {
-    console.log(response)
+    let user_data = response.data.users
+    res.send(user_data)
+  }).catch((error) => {
+    console.log(error)
+    res.send(error)
   })
-
+  
 })
 
 app.get('*', function (request, response) {

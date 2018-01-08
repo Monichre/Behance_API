@@ -261,6 +261,21 @@ aside a {
   top:30px;
   right:80px;
 }
+.search-wrapper.active::after {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: '';
+  background: white;
+  opacity: .9;
+  z-index: 1000;
+  transition: all .5s;
+}
+.search-wrapper.active .input-holder, .search-wrapper.active .close {
+  z-index: 1001;
+}
 .search-wrapper.active {}
 
 .search-wrapper .input-holder {    
