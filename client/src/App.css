@@ -1,7 +1,7 @@
 
 body {
-  background: linear-gradient(45deg, #f4ebe5, #e3d4ca);
-  color: #c0c3c9;
+  /* background: linear-gradient(45deg, #f4ebe5, #e3d4ca);
+  color: #c0c3c9; */
   font-family: "Open Sans";
   font-size: 0.75rem;
   font-weight: 400;
@@ -80,6 +80,7 @@ aside {
   width: 20%;
   height: 100vh;
   position: fixed;
+  padding-top: 50px;
 }
 aside h1 {
   
@@ -135,16 +136,24 @@ aside a {
 
 .dashboard {
   background: #2C3E50;
+  padding: 150px 30px 0;
   width: 80%;
-  height: 100vh;
   float: right;
 }
 
-canvas {
-  margin: -50px -5px;
-  width: 101% !important;
+.ui.cards {
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+}
+.card .main_image {
+  object-fit: cover;
+  object-position: center;
+  height: 200px;
+  width: auto;
 }
 
+/* 
 .row {
   width: 100%;
   margin-top: 41px;
@@ -157,7 +166,7 @@ canvas {
   width: 60%;
   font-size: 14px;
   font-size: 0.875rem;
-}
+} */
 
 .info {
   padding: 25px;
@@ -333,8 +342,8 @@ canvas {
 .search-wrapper .input-holder .search-icon span::before {
   width: 4px;
   height: 11px;
-  left: 9px;
-  top: 18px;
+  left: 5px;
+  top: 12px;
   border-radius: 2px;
   background: #FE5F55;
 }
