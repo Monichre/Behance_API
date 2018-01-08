@@ -47,21 +47,20 @@ const searchUser = async (user) => {
 
   return user_data
 }
+const getUser = async (user_id) => {
+  let user = await Axios.get(Constants.URLS.users + `/${user_id}?client_id=${process.env.REACT_APP_API_KEY}`)
+  return user
+}
 
 
 app.get('/gallery', (req, res) => {
-
   let potential_data = {}
   getGallery().then((response) => {
-
     potential_data.gallery = response.data.collections
-
     getFields().then((fields_response) => {
-
       let field_data = fields_response.data.fields
       potential_data.field_data = field_data
       res.send(potential_data)
-
     }).catch((error) => {
       console.log(error)
     })
@@ -69,21 +68,30 @@ app.get('/gallery', (req, res) => {
     console.log(error)
     res.send(error)
   })
-
 })
 
-app.post('/search', (req, res) => {
-
-  const search_params = req.body.data
-  searchUser(search_params).then((response) => {
-    let user_data = response.data.users
-    res.send(user_data)
+app.get('/get-user', (req, res) => {
+  
+  const user_id = req.query.user_id
+  getUser(user_id).then((response) => {
+    res.send(response.data.user)
   }).catch((error) => {
-    console.log(error)
     res.send(error)
   })
   
 })
+
+app.route('/search')
+  .post((req, res) => {
+    const search_params = req.body.data
+    searchUser(search_params).then((response) => {
+      let user_data = response.data.users
+      res.send(user_data)
+    }).catch((error) => {
+      console.log(error)
+      res.send(error)
+    })
+  })
 
 app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))

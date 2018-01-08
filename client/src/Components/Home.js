@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import { Card, Icon, Image, List, Divider } from 'semantic-ui-react'
+import { Search } from '../Partials/Search'
 import { Constants } from '../constants.js'
 
 export default class Home extends Component {
@@ -11,7 +12,9 @@ export default class Home extends Component {
             searchActive: false,
             searchTerm: '',
             items: [],
-            fields: []
+            fields: [],
+            searchResults: [],
+            searchCompleted: false
         }
     }
     componentWillMount() {
@@ -19,8 +22,6 @@ export default class Home extends Component {
         Axios.get('/gallery').then((response) => {
             let items = response.data.gallery.splice(0, 20)
             let fields = response.data.field_data.splice(0, 20)
-            console.log(response)
-            console.log(fields)
             _this.setState({
                 items: items,
                 fields: fields
@@ -29,8 +30,10 @@ export default class Home extends Component {
             console.log(error)
         })
     }
-    componentDidMount() {
-        console.log(this.state.items)
+    startSearch() {
+        this.setState({
+            searchActive: true
+        })
     }
     runSearch() {
         const _this = this
@@ -38,18 +41,22 @@ export default class Home extends Component {
         Axios.post('/search', {
             data: _this.state.searchTerm
         }).then((response) => {
-            console.log(response)
+            _this.setState({
+                searchResults: response.data,
+                searchCompleted: true
+
+            }, () => {
+                console.log(this.state)
+            })
         }).catch((error) => {
             console.log(error)
-        })
-        this.setState({
-            searchActive: true
         })
     }
     closeSearch(e) {
         e.preventDefault()
         this.setState({
-            searchActive: false
+            searchActive: false,
+            searchCompleted: false
         })
     }
     handleSearchInput(e) {
@@ -68,6 +75,16 @@ export default class Home extends Component {
     }
 
     render() {
+        let search_results_style
+        if (this.state.searchCompleted) {
+            search_results_style = {
+                display: 'flex'
+            }
+        } else {
+            search_results_style = {
+                display: 'none'
+            }
+        }
         return (
             <div id="Home">
                 <header>
@@ -76,7 +93,7 @@ export default class Home extends Component {
                         <div className={`search-wrapper ${this.state.searchActive ? 'active' : ''}`}>
                             <div className="input-holder">
                                 <input type="text" className="search-input" value={this.state.searchTerm} onChange={this.handleSearchInput.bind(this)} placeholder="Type to search" onKeyDown={this.handleKeyPress.bind(this)}/>
-                                <button className="search-icon" onClick={this.runSearch.bind(this)}><span></span></button>
+                                <button className="search-icon" onClick={this.startSearch.bind(this)}><span></span></button>
                             </div>
                             <span className="close" onClick={this.closeSearch.bind(this)}></span>
                         </div>
@@ -93,7 +110,7 @@ export default class Home extends Component {
                 </aside>
 
                 <div className="dashboard">
-                    {/* <canvas id="Chart"></canvas> */}
+                    <Search style={search_results_style} searchResults={this.state.searchResults} />
                     <Card.Group>
                         {this.state.items.map((item) => (
                             <Card>
