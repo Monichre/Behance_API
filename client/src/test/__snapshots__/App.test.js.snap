@@ -18,3 +18,47 @@ exports[`<App /> calls renders without crashing 1`] = `
   </div>
 </BrowserRouter>
 `;
+
+exports[`<App /> renders unique routes 1`] = `
+<App>
+  <BrowserRouter>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "blank",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <div>
+        <Route
+          exact={true}
+          key="route0"
+          path="/"
+          render={[Function]}
+        />
+        <Route
+          exact={true}
+          key="route1"
+          path="/profile/:user"
+          render={[Function]}
+        />
+      </div>
+    </Router>
+  </BrowserRouter>
+</App>
+`;
