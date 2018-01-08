@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> calls renders without crashing 1`] = `
+<BrowserRouter>
+  <div>
+    <Route
+      exact={true}
+      key="route0"
+      path="/"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      key="route1"
+      path="/profile/:user"
+      render={[Function]}
+    />
+  </div>
+</BrowserRouter>
+`;
