@@ -18,8 +18,12 @@ export default class Home extends Component {
         }
     }
     componentWillMount() {
+        this.getGallery()
+    }
+    getGallery() {
         const _this = this
         Axios.get('/gallery').then((response) => {
+            console.log(response)
             let items = response.data.gallery.splice(0, 20)
             let fields = response.data.field_data.splice(0, 10)
             _this.setState({
