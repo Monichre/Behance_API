@@ -19,7 +19,7 @@ export default class Profile extends Component {
             website: '',
             features: [],
             sections: [],
-            active_section: 'home'
+            active_feature: ''
         }
     }
     componentWillMount() {
@@ -46,15 +46,30 @@ export default class Profile extends Component {
                 stats: stats,
                 website: website,
                 features: features,
-                sections: sections
+                sections: sections,
+                active_feature: features[0].site.name
             })
 
         }).catch((error) => {
             console.log(error)
         })
     }
+    setActiveFeature(feature) {
+        console.log(feature)
+        this.setState({
+            active_feature: feature
+        })
+    }
+    renderBackgroundImage() {
+        return this.state.features.find((feature) => feature.site.name === this.state.active_feature)
+    }
 
     render() {
+        console.log(this.state)
+        let image_bg
+        if (this.state.active_feature) {
+            image_bg = this.renderBackgroundImage().site.ribbon.image
+        }
 
         return (
             <div className='profile_container'>
@@ -68,8 +83,8 @@ export default class Profile extends Component {
                         <div className="profile-nav">
                             <h1>Projects</h1>
                             <ul>
-                                {this.state.features.map((feature) => (
-                                    <li className="profile-nav__item profile-nav__item--selected"><a>{feature.site.name}</a></li>
+                                {this.state.features.map((feature, i) => (
+                                    <li key={i} className={`profile-nav__item ${feature.site.name === this.state.active_feature ? 'profile-nav__item--selected' : ''}`}><a onClick={this.setActiveFeature.bind(this, feature.site.name)}>{feature.site.name}</a></li>
                                 ))}
                             </ul>
                         </div>
@@ -79,63 +94,41 @@ export default class Profile extends Component {
                             <h2>{this.state.fields.map((field) => (<span> {field} </span>))}</h2>
                             <span>{this.state.sections.About}</span>
                         </div>
-                        <div className="profile-content__panel profile-content__panel--active">
-                            <div className="profile-list">
-                                <div className="profile-list__item profile-list__item--active">
-                                    <h2></h2>
-                                    <span></span>
-                                    <div className="profile-list__avatar"><img /></div>
-                                    <div className="profile-list__avatar"><img /></div>
+                        {this.state.features.map((feature, i) => (
+                            <div key={i} className={`profile-content__panel ${feature.site.name === this.state.active_feature ? 'profile-content__panel--active' : ''}`}>
+                                <div className="profile-list">
+                                    <div className="profile-list__item profile-list__item--active">
+                                        <h2>{feature.site.name}</h2>
+                                        <div className="profile-list__avatar">
+                                            <img src={feature.site.icon} />
+                                            <span>{feature.site.url}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ))}
+
                     </div>
                     <div className="profile-preview">
-
-                        <div className="profile-preview__panel" data-panel-id="kulon_progo">
-
+                        <div className="profile-preview__panel profile-preview__panel--active" style={{ backgroundImage: `url(${this.state.images['276']})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'top right' }}>
                             <div className="profile-preview__header">
-                                <h2> </h2>
-                                <h3><span></span>
-                                </h3>
+                                <Image src={image_bg} />
+                                <List>
+                                    {Object.keys(this.state.stats).map((stat) => (
+                                        <List.Item className='stat'> <span>{stat}:</span> {this.state.stats[stat]} </List.Item>
+                                    ))}
+                                </List>
                             </div>
-
                             <div className="profile-preview__content">
                                 <section>
-                                    <h2>My Inspiration</h2>
-                                    <label>
-
-                                    </label>
-                                    <label>
-
-                                    </label>
-                                    <label>
-
-                                    </label>
+                                    <h2>Links</h2>
+                                    <h2>{this.state.website}</h2>
+                                    {this.state.social_links.map((link) => (
+                                        <label>
+                                            {link.service_name}:<span>{link.url}</span>
+                                        </label>
+                                    ))}
                                 </section>
-                                <section>
-
-                                </section>
-                                <section>
-                                    <h2></h2>
-                                    <div className="progress-bar">
-
-
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-
-                        <div className="profile-preview__panel profile-preview__panel--active" data-panel-id="bromo">
-
-                            <div className="profile-preview__header">
-                                <h2></h2>
-                                <h3>21<span>C</span>
-                                </h3>
-                            </div>
-
-                            <div className="profile-preview__content">
-
                             </div>
                         </div>
                     </div>

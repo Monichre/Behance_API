@@ -51,6 +51,15 @@ const getUser = async (user_id) => {
   let user = await Axios.get(Constants.URLS.users + `/${user_id}?client_id=${process.env.REACT_APP_API_KEY}`)
   return user
 }
+const getUserProjects = async (user_id) => {
+  let projects = await Axios.get(Constants.URLS.users + `/${user_id}/projects?client_id=${process.env.REACT_APP_API_KEY}`, {
+    params: {
+      sort: 'views'
+    }
+  })
+  
+  return projects
+}
 
 
 app.get('/gallery', (req, res) => {
