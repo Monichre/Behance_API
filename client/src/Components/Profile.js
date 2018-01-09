@@ -17,10 +17,13 @@ export default class Profile extends Component {
             social_links: [],
             stats: {},
             website: '',
-            features: [],
+            projects: [],
             sections: [],
-            active_feature: ''
+            // active_project: false
         }
+    }
+    shouldComponentUpdate() {
+        return true
     }
     componentWillMount() {
 
@@ -32,9 +35,11 @@ export default class Profile extends Component {
                 user_id: user_id
             }
         }).then((response) => {
-
-            const { first_name, last_name, fields, images, sections, features, occupation, location, social_links, stats, website } = response.data
-
+            
+            const { first_name, last_name, fields, images, sections, occupation, location, social_links, stats, website } = response.data.user_data
+            const { projects, followers, following, work_experience } = response.data
+            
+            
             _this.setState({
                 first_name: first_name,
                 last_name: last_name,
@@ -45,31 +50,41 @@ export default class Profile extends Component {
                 social_links: social_links,
                 stats: stats,
                 website: website,
-                features: features,
+                projects: projects,
+                followers: followers,
+                following: following,
                 sections: sections,
-                active_feature: features[0].site.name
+                work_experience: work_experience,
+                active_project: projects[0].id
             })
 
         }).catch((error) => {
             console.log(error)
         })
     }
-    setActiveFeature(feature) {
-        console.log(feature)
+
+    setActiveProject(project) {
+        console.log(project)
         this.setState({
-            active_feature: feature
+            active_project: project
         })
     }
     renderBackgroundImage() {
-        return this.state.features.find((feature) => feature.site.name === this.state.active_feature)
+        return 
+        
     }
 
     render() {
-        console.log(this.state)
-        let image_bg
-        if (this.state.active_feature) {
-            image_bg = this.renderBackgroundImage().site.ribbon.image
-        }
+        // console.log(this.state)
+        // let image_bg
+        // if (this.state.active_project) {
+        //     let img_src = this.renderBackgroundImage()
+        //     image_bg = <Image src={img_src.covers['230']} />
+        // }
+        // console.log(image_bg)
+        console.log(this.state.active_project)
+        console.log(this.state.projects)
+        // this.state.projects.find((project) => project.id === this.state.active_project)
 
         return (
             <div className='profile_container'>
@@ -83,8 +98,8 @@ export default class Profile extends Component {
                         <div className="profile-nav">
                             <h1>Projects</h1>
                             <ul>
-                                {this.state.features.map((feature, i) => (
-                                    <li key={i} className={`profile-nav__item ${feature.site.name === this.state.active_feature ? 'profile-nav__item--selected' : ''}`}><a onClick={this.setActiveFeature.bind(this, feature.site.name)}>{feature.site.name}</a></li>
+                                {this.state.projects.map((project, i) => (
+                                    <li key={i} className={`profile-nav__item ${project.id === this.state.active_project ? 'profile-nav__item--selected' : ''}`}><a onClick={this.setActiveProject.bind(this, project.id)}>{project.name}</a></li>
                                 ))}
                             </ul>
                         </div>
@@ -94,25 +109,36 @@ export default class Profile extends Component {
                             <h2>{this.state.fields.map((field) => (<span> {field} </span>))}</h2>
                             <span>{this.state.sections.About}</span>
                         </div>
-                        {this.state.features.map((feature, i) => (
-                            <div key={i} className={`profile-content__panel ${feature.site.name === this.state.active_feature ? 'profile-content__panel--active' : ''}`}>
+                        {this.state.projects.map((project, i) => (
+                            <div key={i} className={`profile-content__panel ${project.id === this.state.active_project ? 'profile-content__panel--active' : ''}`}>
                                 <div className="profile-list">
                                     <div className="profile-list__item profile-list__item--active">
-                                        <h2>{feature.site.name}</h2>
+                                        <h2><img src={project.features[0].site.ribbon.image} /> {project.name}</h2>
+                                        <List horizontal>
+                                            {this.state.social_links.map((link) => (
+                                                <List.Item className='stat'><span><a href={link.url}>{link.service_name}</a></span> </List.Item> 
+                                            ))}
+                                        </List>
+                                        <List horizontal>
+                                            {project.fields.map((field) => ( <List.Item className='stat'><span>{field}</span> </List.Item> ))}
+                                        </List>
                                         <div className="profile-list__avatar">
-                                            <img src={feature.site.icon} />
-                                            <span>{feature.site.url}</span>
+                                            
+                                        </div>
+                                        
+                                        <div>
+                                            <Image src={project.covers['230']} />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         ))}
-
+                        
                     </div>
                     <div className="profile-preview">
                         <div className="profile-preview__panel profile-preview__panel--active" style={{ backgroundImage: `url(${this.state.images['276']})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'top right' }}>
                             <div className="profile-preview__header">
-                                <Image src={image_bg} />
+                                
                                 <List>
                                     {Object.keys(this.state.stats).map((stat) => (
                                         <List.Item className='stat'> <span>{stat}:</span> {this.state.stats[stat]} </List.Item>

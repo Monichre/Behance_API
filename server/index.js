@@ -44,7 +44,6 @@ const searchUser = async (user) => {
       api_key: process.env.REACT_APP_API_KEY
     }
   })
-
   return user_data
 }
 const getUser = async (user_id) => {
@@ -57,8 +56,19 @@ const getUserProjects = async (user_id) => {
       sort: 'views'
     }
   })
-  
   return projects
+}
+const getUserFollowers = async (user_id) => {
+  let followers = await Axios.get(Constants.URLS.users + `/${user_id}/followers?client_id=${process.env.REACT_APP_API_KEY}`)
+  return followers
+}
+const getUserFollowing = async (user_id) => {
+  let following = await Axios.get(Constants.URLS.users + `/${user_id}/following?client_id=${process.env.REACT_APP_API_KEY}`)
+  return following
+}
+const getUserWorkExperience = async (user_id) => {
+  let work_experience = await Axios.get(Constants.URLS.users + `/${user_id}/work_experience?client_id=${process.env.REACT_APP_API_KEY}`)
+  return work_experience
 }
 
 
@@ -80,18 +90,56 @@ app.get('/gallery', (req, res) => {
 })
 
 app.get('/get-user', (req, res) => {
-  
+
   const user_id = req.query.user_id
+  let potential_data = {}
+
   getUser(user_id).then((response) => {
-    res.send(response.data.user)
+    potential_data.user_data = response.data.user
+
+    getUserProjects(user_id).then((project_response) => {
+      potential_data.projects = project_response.data.projects
+
+      getUserFollowers(user_id).then((followers_response) => {
+        console.log(followers_response.data.followers)
+        potential_data.followers = followers_response.data.followers
+
+        getUserFollowing(user_id).then((following_response) => {
+          console.log(following_response.data.following)
+          potential_data.following = following_response.data.following
+
+          getUserWorkExperience(user_id).then((work_experience_response) => {
+            console.log(work_experience_response.data.work_experience)
+            potential_data.work_experience = work_experience_response.data.work_experience
+            res.send(potential_data)
+            
+          }).catch((error) => {
+            console.log(error)
+          })
+
+        }).catch((error) => {
+          console.log(error)
+        })
+
+      }).catch((error) => {
+        console.log(error)
+      })
+     
+    }).catch((error) => {
+      console.log(error)
+
+      res.send(error)
+    })
   }).catch((error) => {
+    console.log(error)
+
     res.send(error)
   })
   
 })
 
-app.route('/search')
-  .post((req, res) => {
+
+app.post('/search', (req, res) => {
     const search_params = req.body.data
     searchUser(search_params).then((response) => {
       let user_data = response.data.users
