@@ -21,7 +21,7 @@ export default class Home extends Component {
         const _this = this
         Axios.get('/gallery').then((response) => {
             let items = response.data.gallery.splice(0, 20)
-            let fields = response.data.field_data.splice(0, 20)
+            let fields = response.data.field_data.splice(0, 10)
             _this.setState({
                 items: items,
                 fields: fields
@@ -118,7 +118,7 @@ export default class Home extends Component {
                                 <Card.Content>
                                     <Card.Header>{item.title}</Card.Header>
                                     <Divider />
-                                    <Card.Meta><Image src={item.multiple_owners === false ? item.owners[0].images['50'] : ''} circular={true} size='mini' /> {item.multiple_owners === false ? item.owners[0].first_name : ''} {item.multiple_owners === false ? item.owners[0].last_name : ''}: {item.multiple_owners === false ? item.owners[0].city : ''}, {item.multiple_owners === false ? item.owners[0].country : ''}</Card.Meta>
+                                    <Card.Meta><Image src={item.multiple_owners === false ? item.owners[0].images['50'] : ''} circular={true} size='mini' /> <b>{item.multiple_owners === false ? item.owners[0].first_name : ''} {item.multiple_owners === false ? item.owners[0].last_name : ''}:</b> {item.multiple_owners === false ? item.owners[0].city : ''}, {item.multiple_owners === false ? item.owners[0].country : ''}</Card.Meta>
                                 </Card.Content>
                                 <Card.Content extra>
                                     <List horizontal>
