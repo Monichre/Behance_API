@@ -1,10 +1,9 @@
 const chai = require('chai')
 const expect = chai.expect
-const should = chai.should()
 const {
     Constants
 } = require('../server/constants')
-const nock = require('nock')
+
 
 describe('GET gallery', function () {
     this.timeout(6000)
@@ -63,7 +62,6 @@ describe('getUserProjects', function () {
 describe('getUserFollowers', function () {
     it('returns correct users followers', async() => {
         let data = await Constants.getUserFollowers(1853107)
-        console.log(data.data.followers)
         expect(data.data.followers).to.be.a('array')
         expect(data.data.followers).to.have.length.above(1)
         
@@ -72,7 +70,6 @@ describe('getUserFollowers', function () {
 describe('getUserFollowing', function () {
     it('returns correct user following', async() => {
         let data = await Constants.getUserFollowing(1853107)
-        console.log(data.data.following)
         expect(data.data.following).to.be.a('array')
         expect(data.data.following).to.have.length.above(1)
     })

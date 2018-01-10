@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import { Card, Icon, Image, List, Divider } from 'semantic-ui-react'
 import { Search } from '../Partials/Search'
-import { Constants } from '../constants.js'
+
 
 export default class Home extends Component {
     constructor(props) {
@@ -11,29 +11,11 @@ export default class Home extends Component {
         this.state = {
             searchActive: false,
             searchTerm: '',
-            items: [],
-            fields: [],
             searchResults: [],
             searchCompleted: false
         }
     }
-    componentWillMount() {
-        this.getGallery()
-    }
-    getGallery() {
-        const _this = this
-        Axios.get('/gallery').then((response) => {
-            console.log(response)
-            let items = response.data.gallery.splice(0, 20)
-            let fields = response.data.field_data.splice(0, 10)
-            _this.setState({
-                items: items,
-                fields: fields
-            })
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
+   
     startSearch() {
         this.setState({
             searchActive: true
@@ -45,13 +27,10 @@ export default class Home extends Component {
         Axios.post('/search', {
             data: _this.state.searchTerm
         }).then((response) => {
-            console.log(JSON.stringify(response.data))
             _this.setState({
                 searchResults: response.data,
                 searchCompleted: true
 
-            }, () => {
-                console.log(this.state)
             })
         }).catch((error) => {
             console.log(error)
@@ -68,15 +47,16 @@ export default class Home extends Component {
         e.preventDefault()
         this.setState({
             searchTerm: e.target.value
-        }, ()=> {
-            console.log(this.state)
         })
     }
     handleKeyPress(e) {
        if (e.which === 13) {
-        console.log("you pressed enter")
         this.runSearch()
        }
+    }
+    filterCardCategory(category) {
+        console.log(category)
+        this.props.filterCategory(category)
     }
 
     render() {
@@ -90,6 +70,7 @@ export default class Home extends Component {
                 display: 'none'
             }
         }
+        
         return (
             <div id="Home">
                 <header>
@@ -108,8 +89,8 @@ export default class Home extends Component {
                 <aside>
                     <h1>Dealer Inspire + Behance</h1>
                     <ul>
-                        {this.state.fields.map((field) => (
-                            <li>{field.name}</li>
+                        {this.props.fields.map((field, i) => (
+                            <li key={'category-' + i} onClick={this.filterCardCategory.bind(this, field.name)}>{field.name}</li>
                         ))}
                     </ul>
                 </aside>
@@ -117,9 +98,9 @@ export default class Home extends Component {
                 <div className="dashboard">
                     <Search style={search_results_style} searchResults={this.state.searchResults} />
                     <Card.Group>
-                        {this.state.items.map((item) => (
+                        {this.props.items.map((item) => (
                             <Card>
-                                <Image className="main_image" src={item.project_covers.length > 0 ? item.project_covers[0].url : ''} />
+                                <Image className="main_image" src={(item.project_covers && item.project_covers.length > 0) ? item.project_covers[0].url : ''} />
                                 <Card.Content>
                                     <Card.Header>{item.title}</Card.Header>
                                     <Divider />

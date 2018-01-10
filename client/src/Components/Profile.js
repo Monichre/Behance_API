@@ -1,15 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Icon, Image, List, Divider } from 'semantic-ui-react'
 import Axios from 'axios'
-
-const Loader = () => (
-    <div className="loader_bg">
-        <div className="loader">
-            <div className="loader__figure"></div>
-            <p className="loader__label">Loading...</p>
-        </div>
-    </div>
-)
+import {Loader} from '../Partials/Loader'
 
 export default class Profile extends Component {
     constructor(props) {
@@ -36,7 +28,7 @@ export default class Profile extends Component {
 
     componentWillMount() {
 
-        const user_id = this.props.match.params.user
+        const user_id = this.props.match.params.user_id
         const _this = this
 
         Axios.get('/get-user', {
@@ -47,7 +39,11 @@ export default class Profile extends Component {
             console.log(response)
 
             const { first_name, last_name, fields, images, sections, occupation, location, social_links, stats, website } = response.data.user_data
-            const { projects, followers, following, work_experience } = response.data
+            const { projects, work_experience } = response.data
+            let { followers, following } = response.data
+
+            followers = followers.splice(0, 4)
+            following = following.splice(0, 4)
 
 
             _this.setState({
@@ -169,7 +165,7 @@ export default class Profile extends Component {
                                         <div>
                                             <h1>Following</h1>
                                             <List className='following'>
-                                                {this.state.following ? this.state.following.splice(0, 4).map(followed =>
+                                                {this.state.following ? this.state.following.map(followed =>
                                                     <List.Item >
                                                         <Image src={followed.images['50']} circular={true} size='mini' avatar={true} verticalAlign='top' /> <span>{followed.first_name} {followed.first_name}</span>
                                                     </List.Item>)
@@ -180,7 +176,7 @@ export default class Profile extends Component {
                                         <div>
                                             <h1>Followers</h1>
                                             <List className='followers'>
-                                                {this.state.followers ? this.state.followers.splice(0, 4).map(follower =>
+                                                {this.state.followers ? this.state.followers.map(follower =>
                                                     <List.Item className='stat'>
                                                         <Image src={follower.images['50']} circular={true} size='mini' avatar={true} verticalAlign='top' /> <span>{follower.first_name} {follower.first_name}</span>
                                                     </List.Item>)
@@ -191,7 +187,7 @@ export default class Profile extends Component {
                                     </div>
                                 </div>
                                 <Divider />
-                                <div className="profile-preview__content">
+                                <div className="profile-preview__content work_experience">
                                     <section>
                                         <h2>Work Experience</h2>
                                         <List>
