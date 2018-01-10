@@ -97,9 +97,9 @@ export default class Home extends Component {
                 <div className="dashboard">
                     <Search style={search_results_style} searchResults={this.state.searchResults} />
                     <Card.Group>
-                        {this.props.items.map((item) => (
-                            <Card>
-                                <Image className="main_image" src={(item.project_covers && item.project_covers.length > 0) ? item.project_covers[0].url : ''} />
+                        {this.props.items.map((item, i) => (
+                            <Card key={'card-' + i}>
+                                <a href={item.url}><Image className="main_image" src={(item.project_covers && item.project_covers.length > 0) ? item.project_covers[0].url : ''} /></a>
                                 <Card.Content>
                                     <Card.Header>{item.title}</Card.Header>
                                     <Divider />

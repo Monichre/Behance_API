@@ -32,11 +32,11 @@ app.get('/gallery', (req, res) => {
       res.send(potential_data)
 
     }).catch((error) => {
-      console.log(error)
+      
+      res.send(error)
     })
   }).catch((error) => {
-    console.log(error)
-
+    
     res.send(error)
   })
 })
@@ -46,7 +46,7 @@ app.post('/search', (req, res) => {
     let user_data = response.data.users
     res.send(user_data)
   }).catch((error) => {
-    console.log(error)
+    
     res.send(error)
   })
 })
@@ -75,27 +75,21 @@ app.get('/get-user', (req, res) => {
             res.send(potential_data)
             
           }).catch((error) => {
-            console.log(error)
             res.send(error)
           })
 
         }).catch((error) => {
-          console.log(error)
           res.send(error)
         })
 
       }).catch((error) => {
-        console.log(error)
         res.send(error)
       })
      
     }).catch((error) => {
-      console.log(error)
       res.send(error)
     })
   }).catch((error) => {
-    console.log(error)
-
     res.send(error)
   })
   

@@ -252,32 +252,18 @@ aside a {
 }
 
 .card .main_image {
-  object-fit: cover;
+  
+  object-fit: contain;
   object-position: center;
   height: 200px;
-  width: auto;
+  width: 100%;
 }
 .card .meta img {
   margin-right: 5px;
 }
 
 
-/* 
-.row {
-  width: 100%;
-  margin-top: 41px;
-}
-.row p {
-  float: left;
-  margin: -110px 150px;
-  color: #FFF;
-  font-weight: 400;
-  width: 60%;
-  font-size: 14px;
-  font-size: 0.875rem;
-} */
-
-.info {
+/* .info {
   padding: 25px;
 }
 
@@ -309,7 +295,7 @@ aside a {
   visibility: hidden;
   font-size: 20px !important;
   font-size: 1.25rem;
-}
+} */
 
 
 /* SEARCH */
@@ -371,7 +357,7 @@ aside a {
   border: 1px solid rgba(118, 117, 128, 0.08)
 }
 
-.search-wrapper.active {}
+
 
 .search-wrapper.active .input-holder,
 .search-wrapper.active .close {

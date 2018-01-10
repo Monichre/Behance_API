@@ -36,7 +36,6 @@ export default class Profile extends Component {
                 user_id: user_id
             }
         }).then((response) => {
-            console.log(response)
 
             const { first_name, last_name, fields, images, sections, occupation, location, social_links, stats, website } = response.data.user_data
             const { projects, work_experience } = response.data
@@ -88,15 +87,13 @@ export default class Profile extends Component {
     }
 
     render() {
-        console.log(this.state)
+
         let image_bg
         if (this.state.active_project) {
             let img_src = this.renderBackgroundImage()
             image_bg = <Image src={img_src.covers['230']} />
         }
-        console.log(image_bg)
-        console.log(this.state.active_project)
-        console.log(this.state.projects)
+    
 
 
         if (this.state.data_ready) {
