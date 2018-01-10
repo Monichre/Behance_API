@@ -1,6 +1,7 @@
 import React from 'react'
 import sinon from 'sinon'
 import Home from '../Components/Home'
+import {Search} from '../Partials/Search'
 import runSearch from './__mocks__/search-api.js'
 import { shallowToJson } from 'enzyme-to-json';
 
@@ -21,6 +22,18 @@ describe('<Home />', () => {
         expect(spy.calledOnce).toEqual(true)
         expect(home_wrapper.find('.search-wrapper.active')).toHaveLength(1)
     })
+    it('closes the search when button is clicked', async () => {
+        
+        const home_wrapper = shallow(<Home fields={[]} items={[]} />)
+        home_wrapper.find('.search-icon').simulate('click')
+        
+        expect(home_wrapper.find('.search-wrapper.active')).toHaveLength(1)
+        expect(home_wrapper.find('.search-wrapper.active .close')).toHaveLength(1)
+        
+        home_wrapper.find('.search-wrapper.active .close').simulate('click')
+        expect(shallowToJson(home_wrapper)).toMatchSnapshot()
+
+    });
     it('should update search term onChange', () => {
         const value = 'Liam'
         const onChange = jest.fn();
@@ -76,6 +89,43 @@ describe('<Home />', () => {
 
         home_wrapper.simulate('handleKeyPress')
         expect(home_wrapper.state().searchResults).toEqual(data)
+
+    });
+    it('displays search results', async () => {
+        jest.mock('./__mocks__/search-api.js')
+
+        // const spy = sinon.spy(Home.prototype, 'runSearch')
+        const home_wrapper = shallow(<Home fields={[]} items={[]} />)
+        const data = await runSearch()
+        const mock = jest.fn().mockImplementation(() => {
+            home_wrapper.setState({
+                searchResults: data
+            })
+        })
+        const handleKeyPress = jest.fn()
+        handleKeyPress.mockReturnValue(mock())
+        home_wrapper.setState({
+            searchTerm: 'Liam'
+        })
+
+        home_wrapper.simulate('runSearch')
+        home_wrapper.simulate('handleKeyPress')
+        
+        const search_wrapper = mount(<Search searchResults={data}/>)
+        expect(shallowToJson(search_wrapper)).toMatchSnapshot()
+
+    });
+
+
+});
+
+describe('<Search />', () => {
+    it('search results link to proper page', async () => {
+        jest.mock('./__mocks__/search-api.js')
+
+        const data = await runSearch()
+        const search_wrapper = mount(<Search searchResults={data}/>)
+        expect(search_wrapper.find('.searchResult a')).toBeTruthy()
 
     });
 });

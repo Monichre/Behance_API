@@ -36,8 +36,7 @@ export default class Home extends Component {
             console.log(error)
         })
     }
-    closeSearch(e) {
-        e.preventDefault()
+    closeSearch() {
         this.setState({
             searchActive: false,
             searchCompleted: false

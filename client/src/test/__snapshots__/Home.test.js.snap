@@ -1,89 +1,540 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Home /> it sets component state on runSearch 1`] = `
-<Home
-  fields={Array []}
-  items={Array []}
+exports[`<Home /> closes the search when button is clicked 1`] = `
+<div
+  id="Home"
+>
+  <header>
+    <i
+      className="fa fa-bars"
+    />
+    <div
+      className="menu"
+    >
+      <div
+        className="search-wrapper "
+      >
+        <div
+          className="input-holder"
+        >
+          <input
+            className="search-input"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Type to search"
+            type="text"
+            value=""
+          />
+          <button
+            className="search-icon"
+            onClick={[Function]}
+          >
+            <span />
+          </button>
+        </div>
+        <span
+          className="close"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+  </header>
+  <aside>
+    <h1>
+      Dealer Inspire + Behance
+    </h1>
+    <ul />
+  </aside>
+  <div
+    className="dashboard"
+  >
+    <Search
+      searchResults={Array []}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+    <CardGroup />
+  </div>
+</div>
+`;
+
+exports[`<Home /> displays search results 1`] = `
+<Search
+  searchResults={
+    Array [
+      Object {
+        "city": "London",
+        "company": "",
+        "country": "United Kingdom",
+        "created_on": 1353324132,
+        "display_name": "Liam Pitchford",
+        "fields": Array [
+          "Art Direction",
+          "Motion Graphics",
+          "Digital Art",
+        ],
+        "first_name": "Liam",
+        "has_default_image": 0,
+        "id": 1853107,
+        "images": Object {
+          "100": "https://mir-s3-cdn-cf.behance.net/user/100/4609491853107.58b2df5a7fef4.jpg",
+          "115": "https://mir-s3-cdn-cf.behance.net/user/115/4609491853107.58b2df5a7fef4.jpg",
+          "138": "https://mir-s3-cdn-cf.behance.net/user/138/4609491853107.58b2df5a7fef4.jpg",
+          "230": "https://mir-s3-cdn-cf.behance.net/user/230/4609491853107.58b2df5a7fef4.jpg",
+          "276": "https://mir-s3-cdn-cf.behance.net/user/276/4609491853107.58b2df5a7fef4.jpg",
+          "50": "https://mir-s3-cdn-cf.behance.net/user/50/4609491853107.58b2df5a7fef4.jpg",
+        },
+        "last_name": "Pitchford",
+        "location": "London, United Kingdom",
+        "occupation": "Digital Artist",
+        "state": "",
+        "stats": Object {
+          "appreciations": 4954,
+          "comments": 47,
+          "followers": 1251,
+          "following": 303,
+          "views": 47030,
+        },
+        "url": "https://www.behance.net/LiamPitchford",
+        "username": "LiamPitchford",
+        "website": "http://www.liampitchford.com",
+      },
+      Object {
+        "city": "Munich",
+        "company": "philipp rupprecht photography",
+        "country": "Germany",
+        "created_on": 1346001173,
+        "display_name": "Philipp Rupprecht",
+        "fields": Array [
+          "Photography",
+          "Digital Photography",
+          "Retouching",
+        ],
+        "first_name": "Philipp",
+        "has_default_image": 0,
+        "id": 1519755,
+        "images": Object {
+          "100": "https://mir-s3-cdn-cf.behance.net/user/100/1519755.53b4e894e99dd.jpg",
+          "115": "https://mir-s3-cdn-cf.behance.net/user/115/1519755.53b4e894e99dd.jpg",
+          "138": "https://mir-s3-cdn-cf.behance.net/user/138/1519755.53b4e894e99dd.jpg",
+          "230": "https://mir-s3-cdn-cf.behance.net/user/230/1519755.53b4e894e99dd.jpg",
+          "276": "https://mir-s3-cdn-cf.behance.net/user/276/1519755.53b4e894e99dd.jpg",
+          "50": "https://mir-s3-cdn-cf.behance.net/user/50/1519755.53b4e894e99dd.jpg",
+        },
+        "last_name": "Rupprecht",
+        "location": "Munich, Germany",
+        "occupation": "",
+        "state": "",
+        "stats": Object {
+          "appreciations": 9654,
+          "comments": 30,
+          "followers": 4150,
+          "following": 170,
+          "views": 105391,
+        },
+        "url": "https://www.behance.net/philipprupprecht",
+        "username": "philipprupprecht",
+        "website": "http://www.philipprupprecht.de",
+      },
+      Object {
+        "city": "",
+        "company": "",
+        "country": "",
+        "created_on": 0,
+        "display_name": "[Invalid User]",
+        "fields": Array [],
+        "first_name": "[Invalid User]",
+        "has_default_image": 1,
+        "id": 75433,
+        "images": Object {
+          "100": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-100.jpg?cb=264615658",
+          "115": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-115.jpg?cb=264615658",
+          "138": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-138.jpg?cb=264615658",
+          "230": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-230.jpg?cb=264615658",
+          "276": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-276.jpg?cb=264615658",
+          "50": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-50.jpg?cb=264615658",
+        },
+        "last_name": "",
+        "location": "",
+        "occupation": "",
+        "state": "",
+        "stats": Object {
+          "appreciations": 0,
+          "comments": 89,
+          "followers": 0,
+          "following": 0,
+          "views": 0,
+        },
+        "url": "#",
+        "username": "",
+        "website": "#",
+      },
+      Object {
+        "city": "Beijing",
+        "company": "Endless bright ( EB );  Netease Beijing",
+        "country": "China",
+        "created_on": 1386319472,
+        "display_name": "liam lee",
+        "fields": Array [
+          "Graphic Design",
+          "Print Design",
+          "Branding",
+        ],
+        "first_name": "liam",
+        "has_default_image": 0,
+        "id": 4360425,
+        "images": Object {
+          "100": "https://mir-s3-cdn-cf.behance.net/user/100/54a6274360425.550253a1c4353.jpg",
+          "115": "https://mir-s3-cdn-cf.behance.net/user/115/54a6274360425.550253a1c4353.jpg",
+          "138": "https://mir-s3-cdn-cf.behance.net/user/138/54a6274360425.550253a1c4353.jpg",
+          "230": "https://mir-s3-cdn-cf.behance.net/user/230/54a6274360425.550253a1c4353.jpg",
+          "276": "https://mir-s3-cdn-cf.behance.net/user/276/54a6274360425.550253a1c4353.jpg",
+          "50": "https://mir-s3-cdn-cf.behance.net/user/50/54a6274360425.550253a1c4353.jpg",
+        },
+        "last_name": "lee",
+        "location": "Beijing, China",
+        "occupation": "Graphic design lovers、A father",
+        "state": "",
+        "stats": Object {
+          "appreciations": 6378,
+          "comments": 166,
+          "followers": 3780,
+          "following": 579,
+          "views": 76749,
+        },
+        "url": "https://www.behance.net/liamsoso",
+        "username": "liamsoso",
+        "website": "",
+      },
+      Object {
+        "city": "",
+        "company": "",
+        "country": "",
+        "created_on": 1255122662,
+        "display_name": "Liam Ferguson",
+        "fields": Array [
+          "Automotive Design",
+          "Industrial Design",
+          "Product Design",
+        ],
+        "first_name": "Liam",
+        "has_default_image": 1,
+        "id": 127522,
+        "images": Object {
+          "115": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-115.jpg?cb=264615658",
+          "138": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-138.jpg?cb=264615658",
+          "50": "https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-50.jpg?cb=264615658",
+        },
+        "last_name": "Ferguson",
+        "location": "",
+        "occupation": "",
+        "state": "",
+        "stats": Object {
+          "appreciations": 4639,
+          "comments": 5,
+          "followers": 904,
+          "following": 83,
+          "views": 79091,
+        },
+        "url": "https://www.behance.net/LiamFerguson",
+        "username": "LiamFerguson",
+        "website": "",
+      },
+      Object {
+        "city": "San Miguel de Tucumán",
+        "company": "1.22/3",
+        "country": "Argentina",
+        "created_on": 1200316410,
+        "display_name": "1.22/3 .",
+        "fields": Array [
+          "Art Direction",
+          "Digital Art",
+          "Graphic Design",
+        ],
+        "first_name": "1.22/3",
+        "has_default_image": 0,
+        "id": 57101,
+        "images": Object {
+          "100": "https://mir-s3-cdn-cf.behance.net/user/100/88440557101.5953d7ab6fbe5.jpg",
+          "115": "https://mir-s3-cdn-cf.behance.net/user/115/88440557101.5953d7ab6fbe5.jpg",
+          "138": "https://mir-s3-cdn-cf.behance.net/user/138/88440557101.5953d7ab6fbe5.jpg",
+          "230": "https://mir-s3-cdn-cf.behance.net/user/230/88440557101.5953d7ab6fbe5.jpg",
+          "276": "https://mir-s3-cdn-cf.behance.net/user/276/88440557101.5953d7ab6fbe5.jpg",
+          "50": "https://mir-s3-cdn-cf.behance.net/user/50/88440557101.5953d7ab6fbe5.jpg",
+        },
+        "last_name": ".",
+        "location": "San Miguel de Tucumán, Argentina",
+        "occupation": "",
+        "state": "",
+        "stats": Object {
+          "appreciations": 2061,
+          "comments": 86,
+          "followers": 461,
+          "following": 445,
+          "views": 34369,
+        },
+        "url": "https://www.behance.net/Qoya",
+        "username": "Qoya",
+        "website": "www.122.net",
+      },
+    ]
+  }
 >
   <div
-    id="Home"
+    className="search-content"
   >
-    <header>
-      <i
-        className="fa fa-bars"
-      />
-      <div
-        className="menu"
-      >
-        <div
-          className="search-wrapper "
-        >
-          <div
-            className="input-holder"
-          >
-            <input
-              className="search-input"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Type to search"
-              type="text"
-              value=""
-            />
-            <button
-              className="search-icon"
-              onClick={[Function]}
-            >
-              <span />
-            </button>
-          </div>
-          <span
-            className="close"
-            onClick={[Function]}
-          />
-        </div>
-      </div>
-    </header>
-    <aside>
-      <h1>
-        Dealer Inspire + Behance
-      </h1>
-      <ul />
-    </aside>
+    <h1>
+      Search Results
+    </h1>
     <div
-      className="dashboard"
+      className="results-column"
     >
-      <Search
-        searchResults={Array []}
-        style={
-          Object {
-            "display": "none",
-          }
-        }
+      <div
+        className="searchResult"
+        key="searchResult-0"
       >
-        <div
-          className="search-content"
-          style={
-            Object {
-              "display": "none",
-            }
-          }
+        <a
+          href="/profile/1853107"
         >
-          <h1>
-            Search Results
-          </h1>
-          <div
-            className="results-column"
-          />
-        </div>
-      </Search>
-      <CardGroup>
-        <div
-          className="ui cards"
-        />
-      </CardGroup>
+          <List
+            horizontal={true}
+          >
+            <div
+              className="ui horizontal list"
+              role="list"
+            >
+              <ListItem>
+                <div
+                  className="item"
+                  onClick={[Function]}
+                  role="listitem"
+                >
+                  <Image
+                    as="img"
+                    circular={true}
+                    size="mini"
+                    src="https://mir-s3-cdn-cf.behance.net/user/50/4609491853107.58b2df5a7fef4.jpg"
+                    ui={true}
+                  >
+                    <img
+                      className="ui mini circular image"
+                      src="https://mir-s3-cdn-cf.behance.net/user/50/4609491853107.58b2df5a7fef4.jpg"
+                    />
+                  </Image>
+                   
+                  Liam Pitchford
+                </div>
+              </ListItem>
+            </div>
+          </List>
+        </a>
+      </div>
+      <div
+        className="searchResult"
+        key="searchResult-1"
+      >
+        <a
+          href="/profile/1519755"
+        >
+          <List
+            horizontal={true}
+          >
+            <div
+              className="ui horizontal list"
+              role="list"
+            >
+              <ListItem>
+                <div
+                  className="item"
+                  onClick={[Function]}
+                  role="listitem"
+                >
+                  <Image
+                    as="img"
+                    circular={true}
+                    size="mini"
+                    src="https://mir-s3-cdn-cf.behance.net/user/50/1519755.53b4e894e99dd.jpg"
+                    ui={true}
+                  >
+                    <img
+                      className="ui mini circular image"
+                      src="https://mir-s3-cdn-cf.behance.net/user/50/1519755.53b4e894e99dd.jpg"
+                    />
+                  </Image>
+                   
+                  Philipp Rupprecht
+                </div>
+              </ListItem>
+            </div>
+          </List>
+        </a>
+      </div>
+      <div
+        className="searchResult"
+        key="searchResult-2"
+      >
+        <a
+          href="/profile/75433"
+        >
+          <List
+            horizontal={true}
+          >
+            <div
+              className="ui horizontal list"
+              role="list"
+            >
+              <ListItem>
+                <div
+                  className="item"
+                  onClick={[Function]}
+                  role="listitem"
+                >
+                  <Image
+                    as="img"
+                    circular={true}
+                    size="mini"
+                    src="https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-50.jpg?cb=264615658"
+                    ui={true}
+                  >
+                    <img
+                      className="ui mini circular image"
+                      src="https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-50.jpg?cb=264615658"
+                    />
+                  </Image>
+                   
+                  [Invalid User]
+                </div>
+              </ListItem>
+            </div>
+          </List>
+        </a>
+      </div>
+      <div
+        className="searchResult"
+        key="searchResult-3"
+      >
+        <a
+          href="/profile/4360425"
+        >
+          <List
+            horizontal={true}
+          >
+            <div
+              className="ui horizontal list"
+              role="list"
+            >
+              <ListItem>
+                <div
+                  className="item"
+                  onClick={[Function]}
+                  role="listitem"
+                >
+                  <Image
+                    as="img"
+                    circular={true}
+                    size="mini"
+                    src="https://mir-s3-cdn-cf.behance.net/user/50/54a6274360425.550253a1c4353.jpg"
+                    ui={true}
+                  >
+                    <img
+                      className="ui mini circular image"
+                      src="https://mir-s3-cdn-cf.behance.net/user/50/54a6274360425.550253a1c4353.jpg"
+                    />
+                  </Image>
+                   
+                  liam lee
+                </div>
+              </ListItem>
+            </div>
+          </List>
+        </a>
+      </div>
+      <div
+        className="searchResult"
+        key="searchResult-4"
+      >
+        <a
+          href="/profile/127522"
+        >
+          <List
+            horizontal={true}
+          >
+            <div
+              className="ui horizontal list"
+              role="list"
+            >
+              <ListItem>
+                <div
+                  className="item"
+                  onClick={[Function]}
+                  role="listitem"
+                >
+                  <Image
+                    as="img"
+                    circular={true}
+                    size="mini"
+                    src="https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-50.jpg?cb=264615658"
+                    ui={true}
+                  >
+                    <img
+                      className="ui mini circular image"
+                      src="https://a5.behance.net/2604992a5a6a3839cf279cf9beb3cd63d5ce5354/img/profile/no-image-50.jpg?cb=264615658"
+                    />
+                  </Image>
+                   
+                  Liam Ferguson
+                </div>
+              </ListItem>
+            </div>
+          </List>
+        </a>
+      </div>
+      <div
+        className="searchResult"
+        key="searchResult-5"
+      >
+        <a
+          href="/profile/57101"
+        >
+          <List
+            horizontal={true}
+          >
+            <div
+              className="ui horizontal list"
+              role="list"
+            >
+              <ListItem>
+                <div
+                  className="item"
+                  onClick={[Function]}
+                  role="listitem"
+                >
+                  <Image
+                    as="img"
+                    circular={true}
+                    size="mini"
+                    src="https://mir-s3-cdn-cf.behance.net/user/50/88440557101.5953d7ab6fbe5.jpg"
+                    ui={true}
+                  >
+                    <img
+                      className="ui mini circular image"
+                      src="https://mir-s3-cdn-cf.behance.net/user/50/88440557101.5953d7ab6fbe5.jpg"
+                    />
+                  </Image>
+                   
+                  1.22/3 .
+                </div>
+              </ListItem>
+            </div>
+          </List>
+        </a>
+      </div>
     </div>
   </div>
-</Home>
+</Search>
 `;
 
 exports[`<Home /> renders without crashing 1`] = `
