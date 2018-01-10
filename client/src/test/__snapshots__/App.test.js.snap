@@ -1,125 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> calls renders without crashing 1`] = `
-<BrowserRouter>
-  <div>
-    <Route
-      exact={true}
-      key="route0"
-      path="/"
-      render={[Function]}
-    />
-    <Route
-      exact={true}
-      key="route1"
-      path="/profile/:user"
-      render={[Function]}
-    />
-  </div>
-</BrowserRouter>
-`;
-
-exports[`<App /> renders unique routes 1`] = `
-<App>
-  <BrowserRouter>
-    <Router
-      history={
-        Object {
-          "action": "POP",
-          "block": [Function],
-          "createHref": [Function],
-          "go": [Function],
-          "goBack": [Function],
-          "goForward": [Function],
-          "length": 1,
-          "listen": [Function],
-          "location": Object {
-            "hash": "",
-            "pathname": "blank",
-            "search": "",
-            "state": undefined,
-          },
-          "push": [Function],
-          "replace": [Function],
-        }
-      }
-    >
-      <div>
-        <Route
-          exact={true}
-          key="route0"
-          path="/"
-          render={[Function]}
-        />
-        <Route
-          exact={true}
-          key="route1"
-          path="/profile/:user"
-          render={[Function]}
-        />
-      </div>
-    </Router>
-  </BrowserRouter>
-</App>
-`;
-
-exports[`<Home /> renders without crashing 1`] = `
-<div
-  id="Home"
->
-  <header>
-    <i
-      className="fa fa-bars"
-    />
+<Loader>
+  <div
+    className="loader_bg"
+  >
     <div
-      className="menu"
+      className="loader"
     >
       <div
-        className="search-wrapper "
+        className="loader__figure"
+      />
+      <p
+        className="loader__label"
       >
-        <div
-          className="input-holder"
-        >
-          <input
-            className="search-input"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="Type to search"
-            type="text"
-            value=""
-          />
-          <button
-            className="search-icon"
-            onClick={[Function]}
-          >
-            <span />
-          </button>
-        </div>
-        <span
-          className="close"
-          onClick={[Function]}
-        />
-      </div>
+        Loading...
+      </p>
     </div>
-  </header>
-  <aside>
-    <h1>
-      Dealer Inspire + Behance
-    </h1>
-    <ul />
-  </aside>
-  <div
-    className="dashboard"
-  >
-    <Search
-      searchResults={Array []}
-      style={
-        Object {
-          "display": "none",
-        }
-      }
-    />
-    <CardGroup />
   </div>
-</div>
+</Loader>
 `;
+
+exports[`<App /> renders unique routes 1`] = `<Loader />`;

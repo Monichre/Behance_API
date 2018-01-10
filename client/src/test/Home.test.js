@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-    BrowserRouter,
-    Route
-} from 'react-router-dom'
-import App from '../App'
 import sinon from 'sinon'
 import Home from '../Components/Home'
-import getGallery from './__mocks__/gallery-api.js'
 import runSearch from './__mocks__/search-api.js'
 
 
@@ -15,26 +9,6 @@ describe('<Home />', () => {
         const home_wrapper = shallow(<Home />)
         expect(home_wrapper).toMatchSnapshot()
     })
-
-    it('#getGallery() makes async call to Node backend', async () => {
-        const data = await getGallery()
-        expect(data).toBeDefined()
-    })
-
-    it('should load gallery and field data', async () => {
-        const data = await getGallery()
-        expect(data).toBeDefined()
-        expect(Object.keys(data)).toContain('field_data')
-        expect(Object.keys(data)).toContain('gallery')
-    })
-
-    it('#componentWillMount runs getGallery', async () => {
-        const spy = sinon.spy(Home.prototype, 'getGallery')
-        const home_wrapper = shallow(<Home />)
-        home_wrapper.simulate('componentWillMount')
-        expect(spy.calledOnce).toEqual(true)
-    })
-
     it('should render a search icon button', () => {
         const home_wrapper = shallow(<Home />)
         expect(home_wrapper.find('.search-icon')).toHaveLength(1)

@@ -3,13 +3,15 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import App from '../App'
 import sinon from 'sinon'
 import Home from '../Components/Home'
+import {Loader} from '../Partials/Loader'
+import getGallery from './__mocks__/gallery-api.js'
 
 
 describe('<App />', () => {
 
   it('calls renders without crashing', () => {
-    const wrapper = shallow(<App />)
-    expect(wrapper).toMatchSnapshot()
+    const loader_wrapper = mount(<Loader />)
+    expect(loader_wrapper).toMatchSnapshot()
   })
 
   it('renders once', () => {
@@ -27,8 +29,27 @@ describe('<App />', () => {
 
   it('renders unique routes', () => {
     const wrapper = shallow(<App />)
-    Route.displayName = 'Route'
-    expect(wrapper.find(Route)).toHaveLength(2)
+    
+    expect(wrapper).toMatchSnapshot()
   })
+
+  it('#getGallery() makes async call to Node backend', async () => {
+    const data = await getGallery()
+    expect(data).toBeDefined()
+})
+
+it('should load gallery and field data', async () => {
+    const data = await getGallery()
+    expect(data).toBeDefined()
+    expect(Object.keys(data)).toContain('field_data')
+    expect(Object.keys(data)).toContain('gallery')
+})
+
+it('#componentWillMount runs getGallery', async () => {
+    const spy = sinon.spy(App.prototype, 'getGallery')
+    const wrapper = shallow(<App />)
+    wrapper.simulate('componentWillMount')
+    expect(spy.calledOnce).toEqual(true)
+})
   
 });
