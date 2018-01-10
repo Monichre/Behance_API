@@ -33,12 +33,49 @@ describe('<Home />', () => {
     })
     it('run the search on keypress enter', async () => {
         const handleKeyPress = jest.fn()
-        // const spy = sinon.spy(Home.prototype, 'handleKeyPress')
         const home_wrapper = shallow(<Home fields={[]} items={[]} />)
         const searchInput = home_wrapper.find('.search-input')
-        const search_wrapper = shallow(<searchInput onKeyDown={handleKeyPress}/>)
-        
+        const search_wrapper = shallow(<searchInput onKeyDown={handleKeyPress} />)
+
         search_wrapper.simulate('keyDown')
         expect(handleKeyPress).toHaveBeenCalledTimes(1);
     })
+    it('expects handle keypress to return runSearch', async () => {
+        const handleKeyPress = jest.fn()
+        const runSearch = jest.fn()
+        handleKeyPress.mockReturnValue(runSearch())
+
+        const home_wrapper = shallow(<Home fields={[]} items={[]} />)
+        const searchInput = home_wrapper.find('.search-input')
+        const search_wrapper = shallow(<searchInput onKeyDown={handleKeyPress} />)
+
+        search_wrapper.simulate('keyDown')
+        expect(handleKeyPress()).toEqual(runSearch())
+    })
+
+    it('sets component state on runSearch', async () => {
+        jest.mock('./__mocks__/search-api.js')
+
+        const spy = sinon.spy(Home.prototype, 'runSearch')
+        const home_wrapper = shallow(<Home fields={[]} items={[]} />)
+        const data = await runSearch()
+        const mock = jest.fn().mockImplementation(() => {
+            home_wrapper.setState({
+                searchResults: data
+            })
+        })
+        const handleKeyPress = jest.fn()
+        handleKeyPress.mockReturnValue(mock())
+        home_wrapper.setState({
+            searchTerm: 'Liam'
+        })
+
+        home_wrapper.simulate('runSearch')
+        expect(home_wrapper.state().searchTerm).toBe('Liam')
+        expect(shallowToJson(home_wrapper)).toMatchSnapshot()
+
+        home_wrapper.simulate('handleKeyPress')
+        expect(home_wrapper.state().searchResults).toEqual(data)
+
+    });
 });
