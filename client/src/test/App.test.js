@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import App from '../App'
 import sinon from 'sinon'
-import Home from '../Components/Home'
 import {Loader} from '../Partials/Loader'
 import getGallery from './__mocks__/gallery-api.js'
 
@@ -29,7 +28,6 @@ describe('<App />', () => {
 
   it('renders unique routes', () => {
     const wrapper = shallow(<App />)
-    
     expect(wrapper).toMatchSnapshot()
   })
 
