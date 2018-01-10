@@ -25,13 +25,11 @@ class App extends Component {
 
     const _this = this
     let the_category = category ? category : undefined
-    console.log(the_category)
     Axios.get('/gallery', {
         params: {
           query: category
         }
       }).then((response) => {
-        console.log(response)
         let items = response.data.gallery.splice(0, 20)
         let fields = response.data.field_data.splice(0, 10)
         _this.setState({
@@ -40,7 +38,7 @@ class App extends Component {
           data_ready: true
         })
       }).catch((error) => {
-        console.log(error)
+        alert(error)
       })
   }
   render() {

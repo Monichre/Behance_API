@@ -102,7 +102,7 @@ export default class Profile extends Component {
                     <div className="profile">
                         <div className="profile-sidebar">
                             <div className="profile-sidebar__brand">
-                                <Image circular='true' size='mini' src={this.state.images['50']} />
+                                <Image circular={true} size='mini' src={this.state.images['50']} />
                                 <br />
                                 {this.state.first_name} {this.state.last_name}
                                 <br />
@@ -130,8 +130,8 @@ export default class Profile extends Component {
                                         <div className="profile-list__item profile-list__item--active">
                                             <h2><img src={project.features ? project.features[0].site.ribbon.image : null} /> {project.name}</h2>
                                             <List horizontal className='profile_social_links'>
-                                                {this.state.social_links.map((link) => (
-                                                    <List.Item className='stat'><span><a href={link.url}>{link.service_name}</a></span> </List.Item>
+                                                {this.state.social_links.map((link, i) => (
+                                                    <List.Item key={'social_link-' + i} className='stat'><span><a href={link.url}>{link.service_name}</a></span> </List.Item>
                                                 ))}
                                             </List>
                                             <List horizontal className='fields'>
@@ -147,7 +147,7 @@ export default class Profile extends Component {
                                         </div>
                                         <List horizontal className="stats_list">
                                                 {Object.keys(this.state.stats).splice(0, 4).map((stat) => (
-                                                    <List.Item className='stat'> <span>{stat}:</span> {this.state.stats[stat]} </List.Item>
+                                                    <List.Item key={'stat-' + i} className='stat'> <span>{stat}:</span> {this.state.stats[stat]} </List.Item>
                                                 ))}
                                             </List>
                                     </div>
@@ -162,8 +162,8 @@ export default class Profile extends Component {
                                         <div>
                                             <h1>Following</h1>
                                             <List className='following'>
-                                                {this.state.following ? this.state.following.map(followed =>
-                                                    <List.Item >
+                                                {this.state.following ? this.state.following.map((followed, i) =>
+                                                    <List.Item key={'followed-' + i}>
                                                         <Image src={followed.images['50']} circular={true} size='mini' avatar={true} verticalAlign='top' /> <span>{followed.first_name} {followed.first_name}</span>
                                                     </List.Item>)
 
@@ -173,8 +173,8 @@ export default class Profile extends Component {
                                         <div>
                                             <h1>Followers</h1>
                                             <List className='followers'>
-                                                {this.state.followers ? this.state.followers.map(follower =>
-                                                    <List.Item className='stat'>
+                                                {this.state.followers ? this.state.followers.map((follower, i) =>
+                                                    <List.Item key={'follower-' + i} className='stat'>
                                                         <Image src={follower.images['50']} circular={true} size='mini' avatar={true} verticalAlign='top' /> <span>{follower.first_name} {follower.first_name}</span>
                                                     </List.Item>)
 
@@ -188,8 +188,8 @@ export default class Profile extends Component {
                                     <section>
                                         <h2>Work Experience</h2>
                                         <List>
-                                            {(this.state.work_experience && this.state.work_experience.length > 0) ? this.state.work_experience.map((work_item) => (
-                                                <List.Item className='stat'> <b>{work_item.position}</b> at <b>{work_item.organization},</b> {work_item.location} <i>{work_item.start_date}-{work_item.end_date}</i> </List.Item>
+                                            {(this.state.work_experience && this.state.work_experience.length > 0) ? this.state.work_experience.map((work_item, i) => (
+                                                <List.Item key={'work_item-' + i} className='stat'> <b>{work_item.position}</b> at <b>{work_item.organization},</b> {work_item.location} <i>{work_item.start_date}-{work_item.end_date}</i> </List.Item>
                                             )) :
 
                                                 null
