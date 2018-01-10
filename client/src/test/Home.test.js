@@ -1,12 +1,17 @@
 import React from 'react'
 import sinon from 'sinon'
 import Home from '../Components/Home'
-import {Search} from '../Partials/Search'
+import Profile from '../Components/Profile'
+import { Search } from '../Partials/Search'
+import { BrowserRouter, Route } from 'react-router-dom'
 import runSearch from './__mocks__/search-api.js'
-import { shallowToJson } from 'enzyme-to-json';
+import { shallowToJson } from 'enzyme-to-json'
+import { string, object } from 'prop-types'
+
 
 
 describe('<Home />', () => {
+    jest.mock('./__mocks__/search-api.js')
     it('renders without crashing', () => {
         const home_wrapper = shallow(<Home fields={[]} items={[]} />)
         expect(shallowToJson(home_wrapper)).toMatchSnapshot()
@@ -23,13 +28,13 @@ describe('<Home />', () => {
         expect(home_wrapper.find('.search-wrapper.active')).toHaveLength(1)
     })
     it('closes the search when button is clicked', async () => {
-        
+
         const home_wrapper = shallow(<Home fields={[]} items={[]} />)
         home_wrapper.find('.search-icon').simulate('click')
-        
+
         expect(home_wrapper.find('.search-wrapper.active')).toHaveLength(1)
         expect(home_wrapper.find('.search-wrapper.active .close')).toHaveLength(1)
-        
+
         home_wrapper.find('.search-wrapper.active .close').simulate('click')
         expect(shallowToJson(home_wrapper)).toMatchSnapshot()
 
@@ -67,7 +72,6 @@ describe('<Home />', () => {
     })
 
     it('sets component state on runSearch', async () => {
-        jest.mock('./__mocks__/search-api.js')
 
         const spy = sinon.spy(Home.prototype, 'runSearch')
         const home_wrapper = shallow(<Home fields={[]} items={[]} />)
@@ -92,7 +96,6 @@ describe('<Home />', () => {
 
     });
     it('displays search results', async () => {
-        jest.mock('./__mocks__/search-api.js')
 
         // const spy = sinon.spy(Home.prototype, 'runSearch')
         const home_wrapper = shallow(<Home fields={[]} items={[]} />)
@@ -110,8 +113,8 @@ describe('<Home />', () => {
 
         home_wrapper.simulate('runSearch')
         home_wrapper.simulate('handleKeyPress')
-        
-        const search_wrapper = mount(<Search searchResults={data}/>)
+
+        const search_wrapper = mount(<Search searchResults={data} />)
         expect(shallowToJson(search_wrapper)).toMatchSnapshot()
 
     });
@@ -121,11 +124,27 @@ describe('<Home />', () => {
 
 describe('<Search />', () => {
     it('search results link to proper page', async () => {
-        jest.mock('./__mocks__/search-api.js')
 
         const data = await runSearch()
-        const search_wrapper = mount(<Search searchResults={data}/>)
+        const search_wrapper = mount(<Search searchResults={data} />)
         expect(search_wrapper.find('.searchResult a')).toBeTruthy()
 
+
     });
+    it('search results link to proper page loading component mounts', async () => {
+         
+        const data = await runSearch()
+        const search_wrapper = mount(<Search searchResults={data} />)
+        const link = search_wrapper.find('.searchResult a').first()
+        let match = {
+            params: 'path'
+        }
+        const profile_wrapper = shallow(<Profile match={match} />)
+        profile_wrapper.propTypes = {
+            match: object.isRequired
+        };
+        link.simulate('click')
+        expect(shallowToJson(profile_wrapper)).toMatchSnapshot()
+    });
+    
 });

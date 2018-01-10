@@ -876,3 +876,5 @@ exports[`<Home /> sets component state on runSearch 1`] = `
   </div>
 </div>
 `;
+
+exports[`<Search /> search results link to proper page loading component mounts 1`] = `<Loader />`;

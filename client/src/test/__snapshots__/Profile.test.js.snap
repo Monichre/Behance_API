@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Profile /> search results link to proper page and mounts with user_id 1`] = `
+<Profile
+  match={
+    Object {
+      "params": Object {
+        "user_id": 1853107,
+      },
+    }
+  }
+>
+  <Loader>
+    <div
+      className="loader_bg"
+    >
+      <div
+        className="loader"
+      >
+        <div
+          className="loader__figure"
+        />
+        <p
+          className="loader__label"
+        >
+          Loading...
+        </p>
+      </div>
+    </div>
+  </Loader>
+</Profile>
+`;
