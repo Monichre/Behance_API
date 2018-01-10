@@ -1,32 +1,235 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Profile /> search results link to proper page and mounts with user_id 1`] = `
-<Profile
-  match={
-    Object {
-      "params": Object {
-        "user_id": 1853107,
-      },
-    }
-  }
+exports[`<Profile /> search results link to proper page and mounts with user_id 1`] = `<Loader />`;
+
+exports[`<Profile /> sets state properly 1`] = `
+<div
+  className="profile_container"
 >
-  <Loader>
+  <div
+    className="profile"
+  >
     <div
-      className="loader_bg"
+      className="profile-sidebar"
     >
       <div
-        className="loader"
+        className="profile-sidebar__brand"
       >
-        <div
-          className="loader__figure"
+        <Image
+          as="img"
+          circular="true"
+          size="mini"
+          src="https://mir-s3-cdn-cf.behance.net/user/50/4609491853107.58b2df5a7fef4.jpg"
+          ui={true}
         />
-        <p
-          className="loader__label"
-        >
-          Loading...
-        </p>
+        <br />
+        Liam
+         
+        Pitchford
+        <br />
+        <b>
+          Digital Artist
+        </b>
+        <br />
+        http://www.liampitchford.com
+      </div>
+      <div
+        className="profile-nav"
+      >
+        <h1>
+          Projects
+        </h1>
+        <ul>
+          <li
+            className="profile-nav__item "
+            key="0"
+          >
+            <a
+              onClick={[Function]}
+            >
+              project
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-  </Loader>
-</Profile>
+    <div
+      className="profile-content"
+    >
+      <div
+        className="profile-header"
+      >
+        <h2>
+          <span>
+             
+            Art Direction
+             
+          </span>
+          <span>
+             
+            Motion Graphics
+             
+          </span>
+          <span>
+             
+            Digital Art
+             
+          </span>
+        </h2>
+        <span>
+          About me
+        </span>
+      </div>
+      <div
+        className="profile-content__panel "
+        key="0"
+      >
+        <div
+          className="profile-list"
+        >
+          <div
+            className="profile-list__item profile-list__item--active"
+          >
+            <h2>
+              <img
+                src={null}
+              />
+               
+              project
+            </h2>
+            <List
+              className="profile_social_links"
+              horizontal={true}
+            />
+            <List
+              className="fields"
+              horizontal={true}
+            >
+              <ListItem
+                className="stat"
+              >
+                <span>
+                  field
+                </span>
+                 
+              </ListItem>
+            </List>
+            <div>
+              <a>
+                <Image
+                  as="img"
+                  src="img"
+                  ui={true}
+                />
+              </a>
+            </div>
+          </div>
+          <List
+            className="stats_list"
+            horizontal={true}
+          >
+            <ListItem
+              className="stat"
+            >
+               
+              <span>
+                followers
+                :
+              </span>
+               
+              1251
+               
+            </ListItem>
+            <ListItem
+              className="stat"
+            >
+               
+              <span>
+                following
+                :
+              </span>
+               
+              303
+               
+            </ListItem>
+            <ListItem
+              className="stat"
+            >
+               
+              <span>
+                appreciations
+                :
+              </span>
+               
+              4954
+               
+            </ListItem>
+            <ListItem
+              className="stat"
+            >
+               
+              <span>
+                views
+                :
+              </span>
+               
+              47030
+               
+            </ListItem>
+          </List>
+        </div>
+      </div>
+    </div>
+    <div
+      className="profile-preview"
+    >
+      <div
+        className="profile-preview__panel profile-preview__panel--active"
+        style={
+          Object {
+            "backgroundImage": "url(https://mir-s3-cdn-cf.behance.net/user/138/4609491853107.58b2df5a7fef4.jpg)",
+            "backgroundPosition": "top right",
+            "backgroundRepeat": "no-repeat",
+          }
+        }
+      >
+        <div
+          className="profile-preview__header"
+        >
+          <div
+            className="profile-nav"
+          >
+            <div>
+              <h1>
+                Following
+              </h1>
+              <List
+                className="following"
+              />
+            </div>
+            <div>
+              <h1>
+                Followers
+              </h1>
+              <List
+                className="followers"
+              />
+            </div>
+          </div>
+        </div>
+        <Divider />
+        <div
+          className="profile-preview__content work_experience"
+        >
+          <section>
+            <h2>
+              Work Experience
+            </h2>
+            <List />
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;
