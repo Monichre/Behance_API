@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import App from '../App'
 import sinon from 'sinon'
 import Home from '../Components/Home'
@@ -20,24 +20,15 @@ describe('<App />', () => {
 
 
   it('renders the browser router', () => {
-        const wrapper = shallow(<App />)
-        BrowserRouter.displayName = 'BrowserRouter'
-        expect(wrapper.find(BrowserRouter)).toBeTruthy()
-    })
-
-    it('renders unique routes', () => {
-      const wrapper = shallow(<App />)
-      Route.displayName = 'Route'
-      expect(wrapper.find(Route)).toHaveLength(2)
+    const wrapper = shallow(<App />)
+    BrowserRouter.displayName = 'BrowserRouter'
+    expect(wrapper.find(BrowserRouter)).toBeTruthy()
   })
 
+  it('renders unique routes', () => {
+    const wrapper = shallow(<App />)
+    Route.displayName = 'Route'
+    expect(wrapper.find(Route)).toHaveLength(2)
+  })
+  
 });
-
-describe('<Home />', () => {
-  
-    it('renders without crashing', () => {
-      const home_wrapper = shallow(<Home />)
-      expect(home_wrapper).toMatchSnapshot()
-    })
-  
-  });

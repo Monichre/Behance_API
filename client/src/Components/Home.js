@@ -45,6 +45,7 @@ export default class Home extends Component {
         Axios.post('/search', {
             data: _this.state.searchTerm
         }).then((response) => {
+            console.log(JSON.stringify(response.data))
             _this.setState({
                 searchResults: response.data,
                 searchCompleted: true

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> renders without crashing 1`] = `
+<div
+  id="Home"
+>
+  <header>
+    <i
+      className="fa fa-bars"
+    />
+    <div
+      className="menu"
+    >
+      <div
+        className="search-wrapper "
+      >
+        <div
+          className="input-holder"
+        >
+          <input
+            className="search-input"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Type to search"
+            type="text"
+            value=""
+          />
+          <button
+            className="search-icon"
+            onClick={[Function]}
+          >
+            <span />
+          </button>
+        </div>
+        <span
+          className="close"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+  </header>
+  <aside>
+    <h1>
+      Dealer Inspire + Behance
+    </h1>
+    <ul />
+  </aside>
+  <div
+    className="dashboard"
+  >
+    <Search
+      searchResults={Array []}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+    <CardGroup />
+  </div>
+</div>
+`;
